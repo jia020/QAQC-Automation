@@ -1,6 +1,6 @@
 https://cloudstor.aarnet.edu.au/plus/s/K0FECELeDP9SMKw/download?path=%2FGSNSW%2F2021&files=2021_09_Testrocks_NSW_Month-September_Year-2021.zip
 https://cloudstor.aarnet.edu.au/plus/s/K0FECELeDP9SMKw/download?path=%2FNTGS%2F2021%2F2021_10&files=TestRocks_20211013.zip
-https://cloudstor.aarnet.edu.au/plus/s/K0FECELeDP9SMKw/download?path=%2FGSWA%2F2021&files=GSWA%20Test%20Rocks%20june%20july%20Aug%2021.zip
+#https://cloudstor.aarnet.edu.au/plus/s/K0FECELeDP9SMKw/download?path=%2FGSWA%2F2021&files=GSWA%20Test%20Rocks%20june%20july%20Aug%2021.zip
 https://cloudstor.aarnet.edu.au/plus/s/K0FECELeDP9SMKw/download?path=%2FGSSA%2F2021%2F2021_09&files=28September2021.zip
 #https://cloudstor.aarnet.edu.au/plus/s/K0FECELeDP9SMKw/download?path=%2FGSQ%2F2021&files=2021_Mar26_May04.zip
 https://cloudstor.aarnet.edu.au/plus/s/K0FECELeDP9SMKw/download?path=%2FMRT%2F2021%2F2021_09_%2F30Sep2021&files=30Sep2021.zip

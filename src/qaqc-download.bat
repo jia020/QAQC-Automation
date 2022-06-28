@@ -1,2 +1,2 @@
-cd C:\Lingbo\IanLau\runtsg
+cd C:\Lingbo\QAQC-Automation\src
 python3 .\qaqc-download.py

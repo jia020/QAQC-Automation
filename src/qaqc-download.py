@@ -7,6 +7,9 @@ import shutil
 import os
 from pathlib import Path
 import glob
+def create_directory(mydir):
+    if not os.path.exists(mydir):
+        os.mkdir(mydir)
 def clean_directory(mydir):
     if (os.path.exists(mydir)):
         shutil.rmtree(mydir)
@@ -44,10 +47,13 @@ def download_url(url, save_path, chunk_size=1024*64):
 
 mydir = '.\\working'
 clean_directory(mydir)
+create_directory(mydir)
 print('>>nvcl-qaqc:clean_directory:'+ mydir)
 mydir = '.\\working2'
 clean_directory(mydir)
+create_directory(mydir)
 print('>>nvcl-qaqc:clean_directory:'+ mydir)
+
 
 data_url_file = open('data_url_file.txt', 'r')
 urlLines = data_url_file.readlines() 
