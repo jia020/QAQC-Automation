@@ -1,0 +1,26 @@
+MULTIOPTIONS swir
+multifile .\working\*.*
+
+task_begin
+operation puckwcal
+report_file1 C:\Lingbo\IanLau\runtsg\out\20210908_2Bstd_swircalrep_GSWA.csv
+report_file2 C:\Lingbo\IanLau\runtsg\out\20210908_2Bstd_tircalrep_GSWA.csv
+task_end
+
+MULTIOPTIONS swir noassoc testrocks
+multifile .\working\.*
+task_begin
+operation testrox
+testrox_job mylar pyro kaolin talc
+bkrem local
+report_file C:\Lingbo\IanLau\runtsg\out\20210908_2Bstd_testrocks_wvl_GSWA.csv
+task_end
+
+MULTIOPTIONS swir noassoc 
+multifile .\working\*.*
+task_begin
+operation wvlcal
+hwcopt k2160
+report_file C:\Lingbo\IanLau\runtsg\out\20210908_2Bstd_testrocks_wvl_2160_GSWA.csv
+task_end
+

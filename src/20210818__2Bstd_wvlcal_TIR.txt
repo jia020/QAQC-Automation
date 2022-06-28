@@ -1,0 +1,7 @@
+MULTIOPTIONS TIR noassoc 
+multifile .\working\*.*
+task_begin
+operation wvlcal
+hwcopt Q8625
+report_file .\out\20210818_2Bstd_testrocks_wvl_q86256.csv
+task_end

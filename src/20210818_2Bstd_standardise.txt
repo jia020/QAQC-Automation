@@ -1,0 +1,18 @@
+MULTIOPTIONS dirs
+multifile .\working\*.*
+#test to see if it can be tuned to not import imagery and just do data for reprocessing of old testrock data. modified from testscript22e
+task_begin
+operation climport
+format sds
+sdschunk 2
+sdxgamma 0.72
+jpqual 80
+#sdsopt doimg black white oladj revlon wtrim ttcor dogam doloc dotir tircal
+sdsopt dotir tircal DSTEP
+#sdscrit maxcl whitestep albrat
+#sdsthresh maxcl=20 darkmax=17 whitemina=160 whiteminm=125 maxsat=17 whitestep=40 whiteclip=1
+sdstefalb v=0 s=0 t=0
+sdsthermc tirscat=0.02 tirbktemp=10 tirtmtmp=10 tirtdtmp=15 tirdtmp=18
+#sdsalbrat 3.5
+sdspdtray y
+task_end

@@ -1,0 +1,25 @@
+MULTIOPTIONS swir noassoc testrocks
+multifile .\working\*.*
+task_begin
+operation testrox
+testrox_job mylar pyro kaolin talc
+bkrem local
+report_file .\out\20210818_2Bstd_testrocks_wvl.csv
+task_end
+ 
+MULTIOPTIONS swir noassoc 
+multifile .\working\*.*
+task_begin
+operation wvlcal
+hwcopt k2160
+report_file .\out\20210818_2Bstd_testrocks_wvl_2160.csv
+task_end
+ 
+MULTIOPTIONS TIR noassoc 
+multifile .\working\*.*
+task_begin
+operation wvlcal
+hwcopt Q8625
+report_file .\out\20210818_2Bstd_testrocks_wvl_q86256.csv
+task_end
+ 
