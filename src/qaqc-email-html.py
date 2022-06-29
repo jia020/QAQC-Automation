@@ -34,7 +34,7 @@ The following graph show you the result of QAQC in June, 2022.If you want to int
 </html>
 """
 
-sendgrid_client = SendGridAPIClient('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')
+sendgrid_client = SendGridAPIClient('xxxx')
 from_email = From("cg-admin@csiro.au")
 to_email = To("lingbo.jiang@csiro.au")
 subject = Subject("QAQC-Automation:Report 06/2022")
