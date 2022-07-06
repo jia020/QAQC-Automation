@@ -34,16 +34,21 @@ def clean_directory2(mydir):
         os.remove(os.path.join(mydir, f))
 
 def unzipFile(url,save_path):
-    if not os.path.exists(save_path):
-        os.mkdir(save_path)
-    z = zipfile.ZipFile(BytesIO(urllib.request.urlopen(url).read()))
-    z.extractall(save_path)
-
+    try:
+        if not os.path.exists(save_path):
+            os.mkdir(save_path)
+        z = zipfile.ZipFile(BytesIO(urllib.request.urlopen(url).read()))
+        z.extractall(save_path)
+    except Exception as e:
+        print("url: exception:" + str(e));
 def download_url(url, save_path, chunk_size=1024*64):
-    r = requests.get(url, stream=True)
-    with open(save_path, 'wb') as fd:
-        for chunk in r.iter_content(chunk_size=chunk_size):
-            fd.write(chunk)
+    try:
+        r = requests.get(url, stream=True)
+        with open(save_path, 'wb') as fd:
+            for chunk in r.iter_content(chunk_size=chunk_size):
+                fd.write(chunk)
+    except Exception as e:
+        print("url: exception:" + e);
 
 mydir = '.\\working'
 clean_directory(mydir)
