@@ -27,10 +27,10 @@ All instruments show a diurnal variation between the AM and PM measurements for 
 The following graph show you the result of QAQC in June, 2022.If you want to interactive with the new QAQC data, please click the graph link.
         </font></p> 
 <div>
-    <a href="https://plotly.com/~Lingbo.Jiang/13/?share_key=Nnm4e4C0hCfO6kkcYwMALT" target="_blank" title="QAQC" style="display: block; text-align: center;">
-	<img src="https://plotly.com/~Lingbo.Jiang/13.png?share_key=Nnm4e4C0hCfO6kkcYwMALT" alt="QAQC" style="max-width: 100%;"   onerror="this.onerror=null;this.src='https://plotly.com/404.png';" />
+    <a href="https://plotly.com/~cg-admin/3/?share_key=Nnm4e4C0hCfO6kkcYwMALT" target="_blank" title="QAQC" style="display: block; text-align: center;">
+	<img src="https://plotly.com/~cg-admin/3.png?share_key=Nnm4e4C0hCfO6kkcYwMALT" alt="QAQC" style="max-width: 100%;"   onerror="this.onerror=null;this.src='https://plotly.com/404.png';" />
 	</a>
-    <script data-plotly="Lingbo.Jiang:13" sharekey-plotly="Nnm4e4C0hCfO6kkcYwMALT" src="https://plotly.com/embed.js" async></script>
+    <script data-plotly="cg-admin:3" sharekey-plotly="Nnm4e4C0hCfO6kkcYwMALT" src="https://plotly.com/embed.js" async></script>
 </div>
 </body>
 </html>
@@ -47,8 +47,8 @@ attachment.file_name = FileName('qaqc-report.csv')
 attachment.disposition = Disposition('attachment')
 attachment.content_id = ContentId('qaqc-report ID')
 
-
-sendgrid_client = SendGridAPIClient('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')
+sendgrid_key = 'key'
+sendgrid_client = SendGridAPIClient(sendgrid_key)
 from_email = From("cg-admin@csiro.au")
 to_email = To("lingbo.jiang@csiro.au")
 subject = Subject("QAQC-Automation:Report 06/2022")
