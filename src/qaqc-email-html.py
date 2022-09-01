@@ -1,6 +1,7 @@
 import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import From, To, Subject, PlainTextContent, HtmlContent, Mail
+from sendgrid.helpers.mail import Attachment, FileContent, FileName, FileType, Disposition, ContentId
 try:
     # Python 3
     import urllib.request as urllib
@@ -8,6 +9,7 @@ except ImportError:
     # Python 2
     import urllib2 as urllib
 from bs4 import BeautifulSoup
+import base64
 
 html_text = """
 <html>
@@ -33,8 +35,20 @@ The following graph show you the result of QAQC in June, 2022.If you want to int
 </body>
 </html>
 """
+file_path = '.\\out\\20210819_MRTalltest_aux9.csv'
+with open(file_path, 'rb') as f:
+    data = f.read()
+    f.close()
+encoded = base64.b64encode(data).decode()
+attachment = Attachment()
+attachment.file_content = FileContent(encoded)
+attachment.file_type = FileType('application/csv')
+attachment.file_name = FileName('qaqc-report.csv')
+attachment.disposition = Disposition('attachment')
+attachment.content_id = ContentId('qaqc-report ID')
 
-sendgrid_client = SendGridAPIClient('xxxx')
+
+sendgrid_client = SendGridAPIClient('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')
 from_email = From("cg-admin@csiro.au")
 to_email = To("lingbo.jiang@csiro.au")
 subject = Subject("QAQC-Automation:Report 06/2022")
@@ -45,6 +59,7 @@ plain_text = soup.get_text()
 plain_text_content = PlainTextContent( plain_text)
 
 message = Mail(from_email, to_email, subject, plain_text_content, html_content)
+message.attachment = attachment
 
 try:
     response = sendgrid_client.send(message=message)
