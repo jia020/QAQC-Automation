@@ -1,0 +1,6 @@
+
+# Files and directories created by pub
+src/working/
+src/working2/
+config.ini
+*.log
