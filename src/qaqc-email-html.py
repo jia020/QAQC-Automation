@@ -11,6 +11,18 @@ except ImportError:
 from bs4 import BeautifulSoup
 import base64
 
+import configparser
+from datetime import datetime
+
+# datetime object containing current date and time
+now = datetime.now()
+# dd/mm/YY H:M:S
+datetimeOfReport = now.strftime("%d/%m/%Y %H:%M:%S")
+# Read local file `config.ini`.
+config = configparser.ConfigParser()
+config.read('config.ini')
+
+
 html_text = """
 <html>
     <body>
@@ -47,11 +59,12 @@ attachment.file_name = FileName('qaqc-report.csv')
 attachment.disposition = Disposition('attachment')
 attachment.content_id = ContentId('qaqc-report ID')
 
-sendgrid_key = 'key'
+sendgrid_key = config.get('SENDGRID', 'KEY')
+from_email = From(config.get('SENDGRID', 'FROM'))
+to_email = To(config.get('SENDGRID', 'TO'))
+subject = Subject("QAQC-Automation:Report ON:" + datetimeOfReport )
+
 sendgrid_client = SendGridAPIClient(sendgrid_key)
-from_email = From("cg-admin@csiro.au")
-to_email = To("lingbo.jiang@csiro.au")
-subject = Subject("QAQC-Automation:Report 06/2022")
 html_content = HtmlContent(html_text)
 
 soup = BeautifulSoup(html_text)
