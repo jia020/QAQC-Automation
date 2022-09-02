@@ -64,6 +64,9 @@ from_email = From(config.get('SENDGRID', 'FROM'))
 to_email = To(config.get('SENDGRID', 'TO'))
 subject = Subject("QAQC-Automation:Report ON:" + datetimeOfReport )
 
+if not sendgrid_key:
+    print('No sendgrid_key found, please config key first!')
+    exit()
 sendgrid_client = SendGridAPIClient(sendgrid_key)
 html_content = HtmlContent(html_text)
 
