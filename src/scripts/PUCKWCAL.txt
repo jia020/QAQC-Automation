@@ -1,0 +1,10 @@
+MULTIOPTIONS swir
+multifile .\working\*.*
+#(where the input TSG files (testrocks) are located)
+task_begin
+operation puckwcal
+report_file1 .\out\20220530_2Bstd_swircalrep_all.csv
+#(where the VNIR-SWIRreport file is to be created)
+report_file2 .\out\20220530_2Bstd_tircalrep_all.csv
+#(where the TIR report file is to be created)
+task_end

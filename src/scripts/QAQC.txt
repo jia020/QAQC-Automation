@@ -1,0 +1,67 @@
+CLIMPORT
+#(standaridise the TSG files)
+MULTIOPTIONS dirs
+multifile e:\run\2Bstd\*.*
+#(location of where TSG data is located)
+task_begin
+operation climport
+format sds
+sdschunk 2
+sdxgamma 0.72
+jpqual 80
+#sdsopt doimg black white oladj revlon wtrim ttcor dogam doloc dotir tircal
+sdsopt dotir tircal DSTEP
+#sdscrit maxcl whitestep albrat
+#sdsthresh maxcl=20 darkmax=17 whitemina=160 whiteminm=125 maxsat=17 whitestep=40
+whiteclip=1
+sdstefalb v=0 s=0 t=0
+sdsthermc tirscat=0.02 tirbktemp=10 tirtmtmp=10 tirtdtmp=15 tirdtmp=18
+#sdsalbrat 3.5
+sdspdtray y
+task_end
+PUCKWCAL
+MULTIOPTIONS swir
+multifile D:\run\2Bstd\*.*
+#(where the input TSG files (testrocks) are located)
+task_begin
+operation puckwcal
+38 | CSIRO Australia’s National Science Agency
+report_file1 D:\run\20220530_2Bstd_swircalrep_all.csv
+#(where the VNIR-SWIRreport file is to be created)
+report_file2 D:\run\20220530_2Bstd_tircalrep_all.csv
+#(where the TIR report file is to be created)
+task_end
+TESTROX
+MULTIOPTIONS swir noassoc testrocks
+multifile D:\run\2Bstd\*.*
+#(where the input TSG files (testrocks) are located)
+task_begin
+operation testrox
+testrox_job mylar pyro kaolin talc
+bkrem local
+report_file D:\run\20220530_2Bstd_testrocks_wvl_all.csv
+#(where the SWIR report file is to be created)
+task_end
+WVLCAL
+#(for VNIR SWIR)
+MULTIOPTIONS swir noassoc
+multifile D:\run\2Bstd\*.*
+#(where the input TSG files (testrocks) are located)
+task_begin
+operation wvlcal
+hwcopt k2160
+report_file D:\run\20220530_2Bstd_testrocks_wvl_2160_all.csv
+#(where the SWIR report file is to be created)
+task_end
+WVLCAL
+#(for TIR)
+MULTIOPTIONS TIR noassoc
+NVCL Activity 1 QAQC FY2021-2022 report | 39
+multifile D:\run\2Bstd\*.*
+#(where the input TSG files (testrocks) are located)
+task_begin
+operation wvlcal
+hwcopt Q8625
+report_file D:\run\20210908_2Bstd_testrocks_wvl_q86256_all.csv
+#(where the TIR report file is to be created)
+task_end

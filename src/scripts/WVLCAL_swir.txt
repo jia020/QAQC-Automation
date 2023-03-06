@@ -1,0 +1,10 @@
+#(for VNIR SWIR)
+MULTIOPTIONS swir noassoc
+multifile .\working\*.*
+#(where the input TSG files (testrocks) are located)
+task_begin
+operation wvlcal
+hwcopt k2160
+report_file .\out\20220530_2Bstd_testrocks_wvl_2160_all.csv
+#(where the SWIR report file is to be created)
+task_end

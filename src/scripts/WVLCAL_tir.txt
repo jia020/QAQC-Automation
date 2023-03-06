@@ -1,0 +1,10 @@
+#(for TIR)
+MULTIOPTIONS TIR noassoc
+multifile .\working\*.*
+#(where the input TSG files (testrocks) are located)
+task_begin
+operation wvlcal
+hwcopt Q8625
+report_file .\out\20210908_2Bstd_testrocks_wvl_q86256_all.csv
+#(where the TIR report file is to be created)
+task_end

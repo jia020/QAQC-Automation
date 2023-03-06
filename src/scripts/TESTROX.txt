@@ -1,0 +1,10 @@
+MULTIOPTIONS swir noassoc testrocks
+multifile .\working\*.*
+#(where the input TSG files (testrocks) are located)
+task_begin
+operation testrox
+testrox_job mylar pyro kaolin talc
+bkrem local
+report_file .\out\20220530_2Bstd_testrocks_wvl_all.csv
+#(where the SWIR report file is to be created)
+task_end
