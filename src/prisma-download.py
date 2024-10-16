@@ -16,15 +16,15 @@ import requests
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from datetime import datetime
-
-def sendemail(toaddress,key,emailContent):
+import configparser
+def sendemail(fromEmail, toEmail,key,emailContent):
     # datetime object containing current date and time
     now = datetime.now()
     # dd/mm/YY H:M:S
     datetimeOfReport = now.strftime("%d-%m-%Y %H:%M:%S")    
     message = Mail(
-        from_email='help@tsg.csiro.au',
-        to_emails=toaddress,
+        from_email=fromEmail,
+        to_emails=toEmail,
         subject=f'Prisma-auto-result-{datetimeOfReport}',
         html_content=emailContent
     )
@@ -49,17 +49,22 @@ def download_url(url, save_path, chunk_size=1024*64):
         for chunk in r.iter_content(chunk_size=chunk_size):
             fd.write(chunk)
 
+config = configparser.ConfigParser()
+config.read('config.ini')
+prismaDir=config.get('APP', 'PRISMADir')
+#r'\\fs1-per.nexus.csiro.au\{mr-p1-hypersat}/source/PRISMA/L2D/'
+workDir=config.get('APP', 'WORKDir')
+#r'c:/Users/jia020/Desktop/'
 
-
-#prismaDir=r'Z:/source/PRISMA/L2D/'
-#workDir=r'Z:/source/PRISMA/'
-prismaDir=r'\\fs1-per.nexus.csiro.au\{mr-p1-hypersat}/source/PRISMA/L2D/'
-workDir=r'c:/Users/jia020/Desktop/'
 fo = open(f'{workDir}prisma-proc-cellout.txt', 'a')
 def dual_print(f, *args, **kwargs):
   print(*args, **kwargs)
   print(*args, **kwargs, file=f)
   fo.flush()
+
+
+dual_print(fo,f'>>nvcl-prisma: read config.ini')
+
 
 timeFormat = "%Y-%m-%d %H:%M:%S"
 dual_print(fo,f'>>nvcl-prisma: start at:{datetime.now().strftime(timeFormat)}')
@@ -76,7 +81,7 @@ dual_print(fo,f'>>nvcl-prisma: open prisma-data-done:{len(dfDone)}')
 
 count = 0
 dual_print(fo,f'>>nvcl-prisma: workDir :{workDir}')
-
+dual_print(fo,f'>>nvcl-prisma: prismaDir :{prismaDir}')
 for index , row in df.iterrows():
     url = row.url
     filename = Path(url).stem + '.he5'
@@ -96,7 +101,10 @@ for index , row in df.iterrows():
     dfDone.to_csv(f'{workDir}PRISMA-Data-Done.csv',index=False)
 dfDone.to_csv(f'{workDir}PRISMA-Data-Done.csv',index=False)
 dual_print(fo,f'>>nvcl-prisma:finished and total count { count } {datetime.now().strftime(timeFormat)}!')
+sendgrid_key = config.get('SENDGRID', 'KEY')
+from_email = config.get('SENDGRID', 'FROM')
+to_email = config.get('SENDGRID', 'TO')
 csvHtml = '<a href=\"https://tsgfuncstorage.z8.web.core.windows.net/PRISMAResults/index.html\">https://tsgfuncstorage.z8.web.core.windows.net/PRISMAResults/PRISMA-Data.csv</a>'
 emailContent = f'>>nvcl-prisma:finished and total count { count } {datetime.now().strftime(timeFormat)}! \\n {csvHtml}'
-sendemail('Lingbo.Jiang@csiro.au','sendgridkeyinstead',emailContent)
+sendemail(from_email,to_email,sendgrid_key,emailContent)
 
