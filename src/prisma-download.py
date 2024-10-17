@@ -14,17 +14,20 @@ import io
 import requests
 
 from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
+from sendgrid.helpers.mail import Mail, To
 from datetime import datetime
 import configparser
 def sendemail(fromEmail, toEmail,key,emailContent):
     # datetime object containing current date and time
     now = datetime.now()
     # dd/mm/YY H:M:S
-    datetimeOfReport = now.strftime("%d-%m-%Y %H:%M:%S")    
+    datetimeOfReport = now.strftime("%d-%m-%Y %H:%M:%S") 
+    toList = []
+    for em in toEmail.split(','):
+        toList.append(To(em))
     message = Mail(
         from_email=fromEmail,
-        to_emails=toEmail,
+        to_emails=toList,
         subject=f'Prisma-auto-result-{datetimeOfReport}',
         html_content=emailContent
     )
